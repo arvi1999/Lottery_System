@@ -13,11 +13,14 @@ let result;
 const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   console.log('attempting to deploy from account', accounts[0]);
+
   const result = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({ data:bytecode })  //no arguments in lottery constructor
     .send({gas: '1000000',from : accounts[0]});
    //record the address or deployed contract....
 
+
+   console.log(interface);
    console.log('Contract deployed to', result.options.address);
 
 };
